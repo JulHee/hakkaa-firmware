@@ -27,7 +27,10 @@ embassy-futures = "0.1.2"
 embassy-sync = "0.7.2"
 heapless = "0.8.0"
 adjacent-pair-iterator = "1.0.0"
-
+# Used for the wifi/esp examples
+esp-radio = { version = "0.17.0", features = ["esp32c3", "sniffer", "unstable", "wifi", "esp-now"] }
+ieee80211 = "0.5.9"
+static_cell = { version = "2.1.1" }
 
 [profile.dev]
 # Rust debug is too slow.

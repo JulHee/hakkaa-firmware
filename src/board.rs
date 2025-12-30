@@ -1,11 +1,11 @@
 //! Board support for the Hakkaa board.
 
-use esp_hal::clock::CpuClock;
-use esp_hal::gpio::{DriveMode, Input, InputConfig, Level, Output, OutputConfig, Pull};
-use esp_hal::timer::systimer::SystemTimer;
-
 use crate::led::STOREY_LEDS;
 use crate::switch::LowActiveSwitch;
+use esp_hal::clock::CpuClock;
+use esp_hal::gpio::{DriveMode, Input, InputConfig, Level, Output, OutputConfig, Pull};
+use esp_hal::peripherals::WIFI;
+use esp_hal::timer::systimer::SystemTimer;
 
 use esp_hal::interrupt::software::SoftwareInterruptControl;
 
@@ -19,6 +19,8 @@ pub struct Board<'a> {
     pub sw1: Input<'a>,
     /// The input the shake sensor _U2_ on the main board is connected to.
     pub u2: Input<'a>,
+    /// The wifi chip on the ESP32-C3 board
+    pub wifi: WIFI<'a>,
 }
 
 impl<'a> Board<'a> {
@@ -110,6 +112,7 @@ impl<'a> Board<'a> {
             esp_led,
             sw1,
             u2,
+            wifi: peripherals.WIFI,
         }
     }
 }
